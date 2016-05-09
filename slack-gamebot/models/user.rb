@@ -32,7 +32,7 @@ class User
 
   SORT_ORDERS = ['elo', '-elo', 'created_at', '-created_at', 'wins', '-wins', 'losses', '-losses', 'ties', '-ties', 'user_name', '-user_name', 'rank', '-rank']
 
-  scope :ranked, -> { where(:rank.ne => nil) }
+  scope :ranked, -> { where(:rank.ne => nil, :inactive.ne => true) }
   scope :captains, -> { where(captain: true) }
 
   def current_matches
@@ -104,6 +104,19 @@ class User
   def team_elo
     elo + team.elo
   end
+
+  def reactivate!
+    update_attributes!(inactive: false)
+    User.rank!(team)
+    reload.rank
+  end
+
+  def deactivate!
+    update_attributes!(inactive: true)
+    User.rank!(team)
+    reload.rank
+  end
+
 
   def promote!
     update_attributes!(captain: true)
