@@ -30,6 +30,10 @@ leaderboard [number|infinity]: show the leaderboard, eg. leaderboard 10
 rank [<player> ...]: rank a player or a list of players
 matches [number|infinity]: show this season's matches
 season: show current season
+best: tells you who's best
+worst: tells you who's worst
+seasons: show all seasons
+
 
 Captains
 --------
@@ -40,6 +44,8 @@ set nickname <player> [name], unset nickname <player>: set/unset someone's nickn
 Premium
 -------
 seasons: show all seasons
+deactivate <player>: remove/hide a player from leaderboard (score remains intact)
+reactivate <player>: return a deactivated player to the leaderboard
 reset <team>: reset all stats, start a new season
 unregister <player>: remove a player from the leaderboard
 set nickname [name], unset nickname: set/unset your nickname displayed in leaderboards
