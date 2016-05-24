@@ -16,6 +16,7 @@ class User
   field :captain, type: Boolean, default: false
   field :registered, type: Boolean, default: true
   field :nickname, type: String
+  field :rl_rank, type: String, default: ':unranked:'
 
   belongs_to :team, index: true
   validates_presence_of :team
@@ -98,7 +99,7 @@ class User
     elo_s = "elo: #{team_elo}"
     lws_s = "lws: #{winning_streak}" if winning_streak >= losing_streak && winning_streak >= 3
     lls_s = "lls: #{losing_streak}" if losing_streak > winning_streak && losing_streak >= 3
-    "#{display_name}: #{[wins_s, losses_s, ties_s].compact.join(', ')} (#{[elo_s, lws_s, lls_s].compact.join(', ')})"
+    "#{rl_rank} #{display_name}: #{[wins_s, losses_s, ties_s].compact.join(', ')} (#{[elo_s, lws_s, lls_s].compact.join(', ')})"
   end
 
   def team_elo
@@ -136,6 +137,10 @@ class User
     return unless registered?
     update_attributes!(registered: false, rank: nil)
     User.rank!(team)
+  end
+
+  def setRlRank!(new_rl_rank)
+    update_attributes!(rl_rank: new_rl_rank)
   end
 
   def rank!
