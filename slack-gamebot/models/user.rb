@@ -139,7 +139,7 @@ class User
     User.rank!(team)
   end
 
-  def setRlRank!(new_rl_rank)
+  def set_rl_rank!(new_rl_rank)
     update_attributes!(rl_rank: new_rl_rank)
   end
 
