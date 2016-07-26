@@ -44,8 +44,6 @@ set nickname <player> [name], unset nickname <player>: set/unset someone's nickn
 Premium
 -------
 seasons: show all seasons
-deactivate <player>: remove/hide a player from leaderboard (score remains intact)
-reactivate <player>: return a deactivated player to the leaderboard
 reset <team>: reset all stats, start a new season
 unregister <player>: remove a player from the leaderboard
 set nickname [name], unset nickname: set/unset your nickname displayed in leaderboards

@@ -106,19 +106,6 @@ class User
     elo + team.elo
   end
 
-  def reactivate!
-    update_attributes!(inactive: false)
-    User.rank!(team)
-    reload.rank
-  end
-
-  def deactivate!
-    update_attributes!(inactive: true)
-    User.rank!(team)
-    reload.rank
-  end
-
-
   def promote!
     update_attributes!(captain: true)
   end
