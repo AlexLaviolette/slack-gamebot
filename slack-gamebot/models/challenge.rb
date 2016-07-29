@@ -26,7 +26,7 @@ class Challenge
   index({ challenged_ids: 1, state: 1 }, name: 'active_challenged_index')
 
   validate :validate_playing_against_themselves
-  validate :validate_opponents_counts
+  # validate :validate_opponents_counts
   validate :validate_unique_challenge
   validate :validate_teams
 
