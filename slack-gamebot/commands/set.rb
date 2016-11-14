@@ -5,10 +5,11 @@ module SlackGamebot
 
       class << self
         def set_nickname(client, data, user, v)
+          fail SlackGamebot::Error, "You're not a captain, sorry." unless user.captain?
+
           target_user = user
           slack_mention = v.split.first if v
           if v && User.slack_mention?(slack_mention)
-            fail SlackGamebot::Error, "You're not a captain, sorry." unless user.captain?
             target_user = ::User.find_by_slack_mention!(client.owner, slack_mention)
             v = v[slack_mention.length + 1..-1]
           end
@@ -27,10 +28,11 @@ module SlackGamebot
         end
 
         def unset_nickname(client, data, user, v)
+          fail SlackGamebot::Error, "You're not a captain, sorry." unless user.captain?
+
           target_user = user
           slack_mention = v.split.first if v
           if User.slack_mention?(slack_mention)
-            fail SlackGamebot::Error, "You're not a captain, sorry." unless user.captain?
             target_user = ::User.find_by_slack_mention!(client.owner, slack_mention)
           end
           old_nickname = target_user.nickname

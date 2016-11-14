@@ -1,6 +1,6 @@
 module SlackGamebot
   module Commands
-    class SetRank < SlackRubyBot::Commands::Base
+    class SetNick < SlackRubyBot::Commands::Base
       def self.call(client, data, match)
         auth = ::User.find_create_or_update_by_slack_id!(client, data.user)
         expression = match['expression'] if match['expression']
